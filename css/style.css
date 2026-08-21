@@ -1,0 +1,1610 @@
+:root {
+  --navy-950: #071321;
+  --navy-900: #091a2e;
+  --navy-800: #102b4b;
+  --navy-700: #153a66;
+  --gold-500: #d9a843;
+  --gold-400: #f4c962;
+  --gold-300: #ffe590;
+  --teal-500: #13b7a5;
+  --green-500: #20c25a;
+  --red-500: #b72b32;
+  --ink: #172033;
+  --muted: #657084;
+  --line: rgba(15, 34, 61, .12);
+  --surface: #ffffff;
+  --surface-soft: #f5f8fb;
+  --shadow: 0 24px 70px rgba(5, 18, 35, .18);
+  --gold-grad: linear-gradient(135deg, #fff0a6 0%, #d9a843 34%, #f4c962 62%, #9f6d1e 100%);
+  --navy-grad: linear-gradient(135deg, #071321 0%, #102b4b 55%, #153a66 100%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--surface);
+  font-family: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.container {
+  width: min(1180px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 22px;
+  background: radial-gradient(circle at 50% 15%, rgba(244, 201, 98, .18), transparent 28%), var(--navy-grad);
+  color: #fff;
+  transition: opacity .45s ease, visibility .45s ease;
+}
+
+#loading-screen.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-emblem {
+  width: min(300px, 72vw);
+  padding: 18px;
+}
+
+.loader-text {
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gold-300);
+  font-size: .78rem;
+}
+
+.loader-bar {
+  width: 190px;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .16);
+}
+
+.loader-bar::before {
+  content: "";
+  display: block;
+  width: 45%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--gold-grad);
+  animation: loading 1.05s ease-in-out infinite;
+}
+
+@keyframes loading {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(240%); }
+}
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 1000;
+  padding: 16px 0;
+  color: #fff;
+  background: linear-gradient(180deg, rgba(7, 19, 33, .88), rgba(7, 19, 33, .34), transparent);
+  transition: background .25s ease, padding .25s ease, box-shadow .25s ease;
+}
+
+.site-header.is-scrolled {
+  padding: 10px 0;
+  background: rgba(7, 19, 33, .95);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, .18);
+  backdrop-filter: blur(18px);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand,
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand img {
+  width: 162px;
+  height: auto;
+}
+
+.brand-text {
+  display: none;
+}
+
+.brand-text strong,
+.footer-brand strong {
+  display: block;
+  line-height: 1.1;
+}
+
+.brand-text span,
+.footer-brand span span {
+  display: block;
+  color: rgba(255, 255, 255, .68);
+  font-size: .8rem;
+}
+
+.main-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.main-nav a {
+  position: relative;
+  font-size: .88rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, .82);
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 0;
+  height: 2px;
+  background: var(--gold-grad);
+  transition: width .25s ease;
+}
+
+.main-nav a:hover {
+  color: #fff;
+}
+
+.main-nav a:hover::after {
+  width: 100%;
+}
+
+.header-cta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 0 22px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-weight: 800;
+  line-height: 1.1;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.btn svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+.btn .wa-logo {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  border-radius: 50%;
+}
+
+.btn-sm .wa-logo {
+  width: 18px;
+  height: 18px;
+  flex-basis: 18px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-sm {
+  min-height: 42px;
+  padding: 0 16px;
+  font-size: .86rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-gold {
+  color: #06111f;
+  background: var(--gold-grad);
+  box-shadow: 0 14px 34px rgba(217, 168, 67, .34);
+}
+
+.btn-whatsapp {
+  color: #fff;
+  background: linear-gradient(135deg, #18b657, #0a8c42);
+  box-shadow: 0 14px 34px rgba(24, 182, 87, .3);
+}
+
+.btn-outline-light {
+  color: #fff;
+  border-color: rgba(255, 255, 255, .34);
+  background: rgba(255, 255, 255, .08);
+}
+
+.btn-outline-light:hover {
+  border-color: var(--gold-400);
+  background: rgba(255, 255, 255, .14);
+}
+
+.btn-outline-dark {
+  color: var(--navy-900);
+  border-color: rgba(9, 26, 46, .16);
+  background: #fff;
+}
+
+.nav-toggle {
+  display: none;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .1);
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin: 4px auto;
+  border-radius: 99px;
+  background: #fff;
+  transition: transform .25s ease, opacity .25s ease;
+}
+
+.nav-toggle.is-open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.is-open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  display: grid;
+  place-content: center;
+  gap: 22px;
+  padding: 90px 28px 36px;
+  text-align: center;
+  color: #fff;
+  background: rgba(7, 19, 33, .98);
+  transform: translateY(-100%);
+  transition: transform .34s ease;
+}
+
+.mobile-nav.is-open {
+  transform: translateY(0);
+}
+
+.mobile-nav a:not(.btn) {
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  padding: 136px 0 74px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 78% 24%, rgba(244, 201, 98, .16), transparent 28%),
+    linear-gradient(135deg, rgba(7, 19, 33, 1) 0%, rgba(9, 26, 46, .98) 48%, rgba(21, 58, 102, .96) 100%);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("../assets/img/ruiz-brand-banner.png") right center / min(860px, 52vw) auto no-repeat;
+  opacity: .12;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 170px;
+  background: linear-gradient(0deg, var(--navy-950), transparent);
+  pointer-events: none;
+}
+
+.hero-emblem-float {
+  position: absolute;
+  right: -130px;
+  top: 120px;
+  width: 470px;
+  opacity: .06;
+  filter: drop-shadow(0 30px 70px rgba(0, 0, 0, .4));
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, .72fr);
+  align-items: center;
+  gap: 56px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  color: var(--gold-500);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 34px;
+  height: 2px;
+  border-radius: 99px;
+  background: currentColor;
+}
+
+.eyebrow.on-dark {
+  color: var(--gold-300);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  line-height: .95;
+  letter-spacing: 0;
+}
+
+h1 {
+  max-width: 790px;
+  margin-bottom: 24px;
+  font-size: clamp(3.4rem, 7.2vw, 6.8rem);
+}
+
+h1 em,
+h2 em {
+  color: var(--gold-300);
+  font-style: italic;
+}
+
+.lead {
+  max-width: 660px;
+  margin-bottom: 32px;
+  color: rgba(255, 255, 255, .82);
+  font-size: clamp(1.04rem, 1.6vw, 1.24rem);
+}
+
+.hero-actions,
+.inline-actions,
+.mini-actions,
+.attorney-contact {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.hero-badges {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 760px;
+  margin-top: 38px;
+}
+
+.hero-badge,
+.trust-item,
+.step-row,
+.process-item,
+.contact-card,
+.contact-form {
+  border: 1px solid rgba(255, 255, 255, .12);
+  background: rgba(255, 255, 255, .08);
+  backdrop-filter: blur(18px);
+}
+
+.hero-badge {
+  min-height: 100px;
+  padding: 18px;
+  border-radius: 8px;
+}
+
+.hero-badge .num,
+.trust-item .n {
+  display: block;
+  color: var(--gold-300);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2.15rem;
+  font-weight: 700;
+  line-height: .9;
+}
+
+.hero-badge span:last-child,
+.trust-item p {
+  display: block;
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, .76);
+  font-size: .86rem;
+  font-weight: 700;
+}
+
+.hero-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(244, 201, 98, .36);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(7, 19, 33, .98), rgba(16, 43, 75, .96));
+  box-shadow: var(--shadow);
+}
+
+.hero-card > img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  object-position: center;
+  background: rgba(7, 19, 33, .96);
+}
+
+.hero-card p,
+.hero-card .who {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-card p {
+  margin: 0;
+  padding: 30px 30px 18px;
+  color: #fff;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.quote-mark {
+  position: absolute;
+  right: 24px;
+  bottom: 78px;
+  z-index: 1;
+  color: rgba(244, 201, 98, .22);
+  font-family: Georgia, serif;
+  font-size: 8rem;
+  line-height: .8;
+}
+
+.who {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 0 30px 30px;
+}
+
+.mono,
+.attorney-monogram {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: #06111f;
+  background: var(--gold-grad);
+  font-weight: 900;
+}
+
+.who strong,
+.who span {
+  display: block;
+}
+
+.who span {
+  color: rgba(255, 255, 255, .68);
+  font-size: .9rem;
+}
+
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, .7);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+}
+
+.scroll-cue .line {
+  width: 52px;
+  height: 1px;
+  background: var(--gold-400);
+}
+
+.trust-bar {
+  position: relative;
+  z-index: 5;
+  padding: 0 0 58px;
+  color: #fff;
+  background: var(--navy-950);
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  transform: translateY(-32px);
+}
+
+.trust-item {
+  min-height: 132px;
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.section {
+  position: relative;
+  scroll-margin-top: 86px;
+  padding: 106px 0;
+  overflow: hidden;
+}
+
+#inicio,
+#servicios,
+#derechos,
+#folletos,
+#nosotros,
+#proceso,
+#contacto {
+  scroll-margin-top: 86px;
+}
+
+.section-head {
+  max-width: 760px;
+  margin: 0 auto 54px;
+  text-align: center;
+}
+
+.section-head h2,
+.rights-intro h2 {
+  margin-bottom: 20px;
+  color: var(--navy-950);
+  font-size: clamp(2.6rem, 5vw, 4.8rem);
+}
+
+.section-head p,
+.rights-intro p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 1.03rem;
+}
+
+.divider-orn {
+  width: 86px;
+  height: 3px;
+  margin: 0 auto 20px;
+  border-radius: 999px;
+  background: var(--gold-grad);
+}
+
+.on-navy {
+  color: #fff;
+  background: var(--navy-grad);
+}
+
+.on-navy .section-head h2,
+.on-navy .rights-intro h2 {
+  color: #fff;
+}
+
+.on-navy .section-head p,
+.on-navy .rights-intro p {
+  color: rgba(255, 255, 255, .76);
+}
+
+.section-photo {
+  background:
+    linear-gradient(90deg, rgba(7, 19, 33, .95), rgba(7, 19, 33, .86) 52%, rgba(7, 19, 33, .58)),
+    url("../assets/img/seguro-vida.jpg") right center / min(680px, 54vw) auto no-repeat,
+    var(--navy-grad);
+}
+
+.rights-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(320px, 1fr);
+  gap: 52px;
+  align-items: center;
+}
+
+.rights-callout {
+  margin-top: 28px;
+  padding: 20px 24px;
+  border-left: 4px solid var(--gold-400);
+  border-radius: 0 8px 8px 0;
+  color: var(--gold-300);
+  background: rgba(255, 255, 255, .08);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.8rem;
+  line-height: 1.05;
+}
+
+.inline-actions {
+  margin-top: 28px;
+}
+
+.steps-list {
+  display: grid;
+  gap: 14px;
+}
+
+.step-row {
+  display: grid;
+  grid-template-columns: 74px 1fr;
+  gap: 18px;
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.step-num,
+.pnum,
+.tag {
+  color: var(--gold-500);
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+}
+
+.step-row h4 {
+  margin-bottom: 6px;
+  color: #fff;
+  font-size: 1.05rem;
+}
+
+.step-row p {
+  margin: 0;
+  color: rgba(255, 255, 255, .72);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.service-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 18px 50px rgba(9, 26, 46, .08);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(217, 168, 67, .45);
+  box-shadow: 0 26px 80px rgba(9, 26, 46, .16);
+}
+
+.service-card.featured {
+  grid-column: span 2;
+  background: linear-gradient(135deg, #fff 0%, #fff9e8 100%);
+}
+
+.service-image {
+  overflow: hidden;
+  margin: 8px 0 20px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #edf3f8, #ffffff);
+}
+
+.service-image img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: center;
+  transition: transform .45s ease;
+}
+
+.service-image img.face-safe {
+  object-position: center 38%;
+}
+
+.service-card:hover .service-image img {
+  transform: scale(1.04);
+}
+
+.icon-badge {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  color: var(--navy-950);
+  background: var(--gold-grad);
+}
+
+.icon-badge svg {
+  width: 28px;
+  height: 28px;
+  stroke: currentColor;
+}
+
+.service-card h3,
+.process-item h3,
+.contact-form h3,
+.contact-card h4,
+.attorney-body h3 {
+  margin-bottom: 10px;
+  color: var(--navy-950);
+  font-size: 1.35rem;
+  line-height: 1.15;
+}
+
+.service-card p,
+.process-item p,
+.contact-form p {
+  color: var(--muted);
+}
+
+.learn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  color: var(--navy-900);
+  font-weight: 900;
+}
+
+.learn svg {
+  width: 18px;
+  height: 18px;
+  transition: transform .2s ease;
+}
+
+.learn:hover {
+  color: var(--gold-500);
+}
+
+.learn:hover svg {
+  transform: translateX(4px);
+}
+
+.attorneys-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.attorney-card {
+  display: grid;
+  grid-template-columns: minmax(320px, .86fr) 1fr;
+  overflow: hidden;
+  border: 1px solid rgba(244, 201, 98, .28);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .08);
+  box-shadow: var(--shadow);
+}
+
+.attorney-media {
+  position: relative;
+  min-height: 420px;
+}
+
+.media-frame,
+.media-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.media-bg {
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(7, 19, 33, .58) 100%),
+    url("../assets/img/mario-ruiz-card.jpg") center / contain no-repeat,
+    #061c46;
+}
+
+.attorney-monogram {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  width: 64px;
+  height: 64px;
+}
+
+.attorney-body {
+  padding: clamp(32px, 5vw, 58px);
+}
+
+.attorney-body h3,
+.on-navy .attorney-body h3 {
+  color: #fff;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.attorney-role,
+.attorney-meta {
+  display: block;
+}
+
+.attorney-role {
+  color: var(--gold-300);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+}
+
+.attorney-meta,
+.attorney-quote {
+  color: rgba(255, 255, 255, .72);
+}
+
+.attorney-quote {
+  margin: 24px 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.9rem;
+  line-height: 1.05;
+}
+
+.attorney-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.attorney-tags span {
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, .86);
+  background: rgba(255, 255, 255, .08);
+  font-size: .83rem;
+  font-weight: 800;
+}
+
+.alt-bg {
+  background:
+    linear-gradient(180deg, rgba(245, 248, 251, .92), rgba(245, 248, 251, .96)),
+    url("../assets/img/ahorro-semanas-christian.jpg") right center / min(560px, 44vw) auto no-repeat;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.process-item {
+  min-height: 230px;
+  padding: 28px;
+  border-color: var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .86);
+  box-shadow: 0 18px 44px rgba(9, 26, 46, .06);
+}
+
+.process-item h3 {
+  margin-top: 16px;
+}
+
+.brochure-section {
+  background:
+    radial-gradient(circle at 12% 22%, rgba(19, 183, 165, .10), transparent 28%),
+    linear-gradient(180deg, #ffffff 0%, #f5f8fb 100%);
+}
+
+.brochure-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.brochure-card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 14px;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--navy-950);
+  background: rgba(255, 255, 255, .92);
+  box-shadow: 0 18px 50px rgba(9, 26, 46, .08);
+  cursor: zoom-in;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+.brochure-card:hover,
+.brochure-card:focus-visible {
+  transform: translateY(-5px);
+  border-color: rgba(217, 168, 67, .48);
+  box-shadow: 0 26px 78px rgba(9, 26, 46, .16);
+  outline: none;
+}
+
+.brochure-card img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 6px;
+  background: #f0f4f8;
+}
+
+.brochure-card span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 24px;
+  font-weight: 900;
+}
+
+.brochure-card span::after {
+  content: "+";
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: #06111f;
+  background: var(--gold-grad);
+}
+
+.brochure-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1800;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background: rgba(7, 19, 33, .84);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .22s ease, visibility .22s ease;
+  backdrop-filter: blur(14px);
+}
+
+.brochure-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.brochure-modal-inner {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  width: min(860px, calc(100vw - 44px));
+  max-height: calc(100svh - 56px);
+  padding: 18px;
+  border: 1px solid rgba(244, 201, 98, .36);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, .36);
+}
+
+.brochure-modal-inner h3 {
+  margin: 0;
+  color: var(--navy-950);
+  font-size: 1.1rem;
+}
+
+.brochure-modal-inner img {
+  width: 100%;
+  max-height: calc(100svh - 150px);
+  object-fit: contain;
+  border-radius: 6px;
+  background: #f5f8fb;
+}
+
+.brochure-close {
+  position: fixed;
+  right: 22px;
+  top: 22px;
+  z-index: 1810;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, .24);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255, 255, 255, .12);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.brochure-close:hover {
+  color: var(--navy-950);
+  background: var(--gold-400);
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.section-contact-photo {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, .98) 0%, rgba(255, 255, 255, .95) 52%, rgba(255, 255, 255, .80) 100%),
+    url("../assets/img/ppr-ahorro-semanas.jpg") right center / min(660px, 48vw) auto no-repeat;
+}
+
+.contact-wrap {
+  display: grid;
+  grid-template-columns: minmax(300px, .8fr) minmax(340px, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.contact-card,
+.contact-form {
+  border-color: var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .92);
+  box-shadow: var(--shadow);
+}
+
+.contact-card {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 18px;
+  padding: 28px;
+}
+
+.contact-card .role {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--gold-500);
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.contact-card ul,
+.footer-col ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-card li,
+.footer-col li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  color: var(--muted);
+}
+
+.contact-card li svg,
+.footer-col li svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  color: var(--gold-500);
+}
+
+.contact-form {
+  padding: 34px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.field.full {
+  grid-column: 1 / -1;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--navy-900);
+  font-size: .82rem;
+  font-weight: 900;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 52px;
+  border: 1px solid rgba(9, 26, 46, .14);
+  border-radius: 8px;
+  padding: 0 14px;
+  color: var(--navy-900);
+  background: #fff;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.field textarea {
+  min-height: 132px;
+  padding-top: 14px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--gold-500);
+  box-shadow: 0 0 0 4px rgba(217, 168, 67, .16);
+}
+
+.form-foot {
+  margin-top: 22px;
+}
+
+.form-note {
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: .86rem;
+}
+
+.site-footer {
+  padding: 72px 0 28px;
+  color: rgba(255, 255, 255, .74);
+  background: var(--navy-950);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.15fr .72fr .64fr .8fr;
+  gap: 34px;
+}
+
+.footer-brand img {
+  width: 170px;
+}
+
+.footer-brand {
+  margin-bottom: 18px;
+}
+
+.footer-brand strong,
+.footer-col h5 {
+  color: #fff;
+}
+
+.desc {
+  max-width: 390px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-social a {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255, 255, 255, .06);
+  transition: background .2s ease, color .2s ease;
+}
+
+.footer-social a:hover {
+  color: var(--navy-950);
+  background: var(--gold-400);
+}
+
+.footer-social svg {
+  width: 20px;
+  height: 20px;
+}
+
+.footer-social img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.footer-col h5 {
+  margin-bottom: 18px;
+  font-size: .9rem;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+}
+
+.footer-col a:hover {
+  color: var(--gold-300);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 52px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  font-size: .86rem;
+}
+
+.wa-float {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 1100;
+}
+
+.wa-toggle,
+.to-top {
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, .22);
+}
+
+.wa-toggle {
+  width: 62px;
+  height: 62px;
+  color: #fff;
+  background: linear-gradient(135deg, #18b657, #0a8c42);
+}
+
+.wa-toggle svg,
+.to-top svg {
+  width: 28px;
+  height: 28px;
+}
+
+.wa-toggle img {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+}
+
+.wa-menu {
+  position: absolute;
+  right: 0;
+  bottom: 78px;
+  display: grid;
+  gap: 10px;
+  width: min(310px, calc(100vw - 44px));
+  transform: translateY(12px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+}
+
+.wa-menu.is-open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.wa-menu a {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 8px;
+  color: #fff;
+  background: rgba(7, 19, 33, .96);
+  box-shadow: var(--shadow);
+}
+
+.wa-menu .ico {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #25d366;
+}
+
+.wa-menu svg {
+  width: 22px;
+  height: 22px;
+}
+
+.wa-menu .ico img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.wa-menu small {
+  color: rgba(255, 255, 255, .64);
+}
+
+.to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 96px;
+  z-index: 1050;
+  width: 46px;
+  height: 46px;
+  color: var(--navy-950);
+  background: var(--gold-grad);
+  transform: translateY(12px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+}
+
+.to-top.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .7s ease, transform .7s ease;
+  transition-delay: calc(var(--delay, 0) * 80ms);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal-delay="1"] { --delay: 1; }
+[data-reveal-delay="2"] { --delay: 2; }
+[data-reveal-delay="3"] { --delay: 3; }
+[data-reveal-delay="4"] { --delay: 4; }
+[data-reveal-delay="5"] { --delay: 5; }
+
+@media (max-width: 1040px) {
+  .main-nav {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .brand img {
+    width: 142px;
+  }
+
+  .hero-grid,
+  .rights-wrap,
+  .contact-wrap,
+  .attorney-card {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-badges,
+  .trust-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .services-grid,
+  .brochure-grid,
+  .process-grid,
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .service-card.featured {
+    grid-column: span 1;
+  }
+
+  .attorney-media {
+    min-height: 360px;
+  }
+}
+
+@media (max-width: 720px) {
+  .container {
+    width: min(100% - 28px, 1180px);
+  }
+
+  .site-header {
+    padding: 12px 0;
+  }
+
+  .brand img {
+    width: 118px;
+  }
+
+  .header-cta .btn {
+    display: none;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 118px 0 66px;
+  }
+
+  .hero::before {
+    background-position: center 90px;
+    background-size: 86vw auto;
+    opacity: .12;
+  }
+
+  .hero-card > img {
+    aspect-ratio: 1 / 1;
+  }
+
+  h1 {
+    font-size: 3.25rem;
+  }
+
+  .hero-badges,
+  .trust-grid,
+  .services-grid,
+  .brochure-grid,
+  .process-grid,
+  .footer-grid,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 76px 0;
+  }
+
+  .section-head {
+    margin-bottom: 38px;
+  }
+
+  .section-head h2,
+  .rights-intro h2 {
+    font-size: 2.55rem;
+  }
+
+  .step-row,
+  .contact-card {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form,
+  .contact-card,
+  .process-item {
+    padding: 24px;
+  }
+
+  .section-photo {
+    background:
+      linear-gradient(180deg, rgba(7, 19, 33, .96), rgba(7, 19, 33, .90)),
+      url("../assets/img/seguro-vida.jpg") center bottom / 92vw auto no-repeat,
+      var(--navy-grad);
+  }
+
+  .alt-bg {
+    background:
+      linear-gradient(180deg, rgba(245, 248, 251, .96), rgba(245, 248, 251, .98)),
+      url("../assets/img/ahorro-semanas-christian.jpg") center bottom / 92vw auto no-repeat;
+  }
+
+  .section-contact-photo {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, .98), rgba(255, 255, 255, .94)),
+      url("../assets/img/ppr-ahorro-semanas.jpg") center top / 92vw auto no-repeat;
+  }
+
+  .brochure-modal {
+    padding: 14px;
+  }
+
+  .brochure-modal-inner {
+    width: calc(100vw - 28px);
+    padding: 12px;
+  }
+
+  .brochure-close {
+    right: 14px;
+    top: 14px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+  }
+
+  .wa-float {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .to-top {
+    right: 18px;
+    bottom: 88px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}

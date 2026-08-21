@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 220" role="img" aria-labelledby="title desc">
+  <title id="title">Ruiz Agentes de Seguros</title>
+  <desc id="desc">Logotipo transparente inspirado en el escudo dorado R de Ruiz Agentes de Seguros.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff0a6"/>
+      <stop offset="0.22" stop-color="#d9a843"/>
+      <stop offset="0.55" stop-color="#f4c962"/>
+      <stop offset="1" stop-color="#9f6d1e"/>
+    </linearGradient>
+    <linearGradient id="navy" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#071323"/>
+      <stop offset="1" stop-color="#15345a"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(20 18)">
+    <path d="M86 2 164 34v55c0 49-31 84-78 109C39 173 8 138 8 89V34L86 2Z" fill="url(#navy)" stroke="url(#gold)" stroke-width="9"/>
+    <path d="M58 49h42c28 0 47 16 47 41 0 19-10 33-28 39l32 36h-36l-29-33h-2v33H58V49Zm26 24v37h16c13 0 21-7 21-19s-8-18-21-18H84Z" fill="url(#gold)"/>
+    <path d="M38 34 86 15l48 19" fill="none" stroke="#fff3b0" stroke-width="3" opacity=".65"/>
+  </g>
+  <g transform="translate(215 58)">
+    <text x="0" y="72" fill="#ffffff" font-size="78" font-family="Georgia, 'Times New Roman', serif" font-weight="700" letter-spacing="8">RUIZ</text>
+    <text x="4" y="119" fill="url(#gold)" font-size="28" font-family="Arial, sans-serif" font-weight="700" letter-spacing="5">AGENTES DE SEGUROS</text>
+    <path d="M4 141h408" stroke="url(#gold)" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>
